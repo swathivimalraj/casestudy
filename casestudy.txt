@@ -1,0 +1,48 @@
+
+create database casestudy;
+
+use casestudy;
+
+
+create table student_table(s_id varchar(5) primary key,s_name varchar(50) not null,dob date not null,standard int);
+
+
+insert into student_table values('s1','noah centineo','1989-06-12',10);
+insert into student_table values('s2','peter kevinsky','1989-01-27',10);
+insert into student_table values('s3','zac efron','1989-06-09',10);
+insert into student_table values('s4','george','1989-10-31',10);
+insert into student_table values('s5','aaron','1989-08-23',10);
+
+create table mark_table(m_id varchar(5) primary key,s_id varchar(5) references student_table(s_id),exam_date date,french varchar(10),english varchar(10),maths varchar(10),science varchar(10),social varchar(10));
+
+insert into mark_table values('m1','s1','2019-01-01','90','89','78','98','78');
+insert into mark_table values('m2','s2','2019-01-01','88','99','77','78','80');
+insert into mark_table values('m3','s3','2019-01-01','85','90','67','98','80');
+insert into mark_table values('m4','s4','2019-01-01','95','80','60','98','80');
+insert into mark_table values('m5','s5','2019-01-01','77','98','89','89','80');
+insert into mark_table values('m6','s1','2019-02-01','77','98','89','89','80');
+
+
+select * from mark_table where exam_date like '%-01-%';
++------+------+------------+--------+---------+-------+---------+--------+
+| m_id | s_id | exam_date  | french | english | maths | science | social |
++------+------+------------+--------+---------+-------+---------+--------+
+| m1   | s1   | 2019-01-01 | 90     | 89      | 78    | 98      | 78     |
+| m2   | s2   | 2019-01-01 | 88     | 99      | 77    | 78      | 80     |
+| m3   | s3   | 2019-01-01 | 85     | 90      | 67    | 98      | 80     |
+| m4   | s4   | 2019-01-01 | 95     | 80      | 60    | 98      | 80     |
+| m5   | s5   | 2019-01-01 | 77     | 98      | 89    | 89      | 80     |
++------+------+------------+--------+---------+-------+---------+--------+
+5 rows in set, 1 warning (0.04 sec)
+
+mysql> select * from mark_table where exam_date like '%-01-%';
++------+------+------------+--------+---------+-------+---------+--------+
+| m_id | s_id | exam_date  | french | english | maths | science | social |
++------+------+------------+--------+---------+-------+---------+--------+
+| m1   | s1   | 2019-01-01 | 90     | 89      | 78    | 98      | 78     |
+| m2   | s2   | 2019-01-01 | 88     | 99      | 77    | 78      | 80     |
+| m3   | s3   | 2019-01-01 | 85     | 90      | 67    | 98      | 80     |
+| m4   | s4   | 2019-01-01 | 95     | 80      | 60    | 98      | 80     |
+| m5   | s5   | 2019-01-01 | 77     | 98      | 89    | 89      | 80     |
++------+------+------------+--------+---------+-------+---------+--------+
+5 rows in set, 1 warning (0.00 sec)
